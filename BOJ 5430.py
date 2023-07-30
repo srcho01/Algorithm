@@ -28,10 +28,4 @@ for _ in range(t):
     else:
         nums = nums[start:end]
         if reverse: nums = nums[::-1]
-                
-        print("[", end='')
-        for i in nums[:-1]:
-            print(i, end='')
-            print(",", end='')
-        if len(nums) > 0: print(nums[-1], end='')
-        print("]")
+        print(f"[{','.join(list(map(str, nums)))}]")
