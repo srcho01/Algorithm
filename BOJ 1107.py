@@ -10,6 +10,7 @@ if m > 0:
     button = input().strip().split()
 elif m == 10:
     print(k)
+    exit()
 
 for i in range(k):
     if n-i >= 0 and all(not x in button for x in str(n-i)):
