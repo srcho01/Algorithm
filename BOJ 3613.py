@@ -2,7 +2,7 @@ def error(s):
     if s[-1] == '_' or s[0] == '_' or "__" in s or s[0].isupper():
         print("Error!")
         return True
-    elif '_' in s and s != s.lower():
+    if '_' in s and s != s.lower():
         print("Error!")
         return True
     return False
@@ -13,19 +13,15 @@ def variable_type(s):
     if '_' in s: # C++ Style
         s = s.split('_')
         print(s[0], end='')
-        if len(s) > 1:
-            for w in s[1:]:
-                print(w[0].upper(), end='')
-                if len(w) > 1:
-                    print(w[1:], end='')
+        for w in s[1:]:
+            print(w[0].upper() + w[1:], end='')
         print()
     else: # Java Style
         for c in s:
             if c.islower():
                 print(c, end='')
             else:
-                print("_", end='')
-                print(c.lower(), end='')
+                print(f"_{c.lower()}", end='')
         print()
 
 s = input().rstrip()
