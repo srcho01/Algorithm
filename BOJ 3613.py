@@ -7,7 +7,7 @@ def error(s):
         return True
     return False
 
-def variable_type(s):
+def change_variable(s):
     if error(s): return
 
     if '_' in s: # C++ Style
@@ -15,14 +15,12 @@ def variable_type(s):
         print(s[0], end='')
         for w in s[1:]:
             print(w[0].upper() + w[1:], end='')
-        print()
     else: # Java Style
         for c in s:
             if c.islower():
                 print(c, end='')
             else:
                 print(f"_{c.lower()}", end='')
-        print()
 
 s = input().rstrip()
-variable_type(s)
+change_variable(s)
