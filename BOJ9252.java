@@ -4,8 +4,6 @@ import java.io.InputStreamReader;
 
 public class BOJ9252 {
 
-    static StringBuilder sb = new StringBuilder();
-
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -18,42 +16,39 @@ public class BOJ9252 {
     private static void LCS(String s1, String s2) {
 
         int[][] dp = new int[s1.length() + 1][s2.length() + 1];
-        int[][] lcs = new int[s1.length() + 1][s2.length() + 1];
 
         for (int i=1; i<=s1.length(); i++) {
             for (int j=1; j<=s2.length(); j++) {
                 if (s1.charAt(i-1) == s2.charAt(j-1)) {
                     dp[i][j] = dp[i-1][j-1] + 1;
-                    lcs[i][j] = 0;
                 } else {
-                    if (dp[i-1][j] > dp[i][j-1]) {
-                        dp[i][j] = dp[i-1][j];
-                        lcs[i][j] = 1;
-                    } else {
-                        dp[i][j] = dp[i][j-1];
-                        lcs[i][j] = 2;
-                    }
+                    dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
                 }
             }
         }
 
         System.out.println(dp[s1.length()][s2.length()]);
-        print(s1, lcs, s1.length(), s2.length());
-        System.out.println(sb.reverse());
+        print(s1, dp, s1.length(), s2.length());
 
     }
 
-    private static void print(String s, int[][] lcs, int i, int j) {
-        if (i == 0 || j == 0) return;
+    private static void print(String s, int[][] dp, int i, int j) {
 
-        if (lcs[i][j] == 0) {
-            sb.append(s.charAt(i-1));
-            print(s, lcs, i-1, j-1);
-        } else if (lcs[i][j] == 1) {
-            print(s, lcs, i-1, j);
-        } else if (lcs[i][j] == 2) {
-            print(s, lcs, i, j-1);
+        StringBuilder sb = new StringBuilder();
+
+        while (i > 0 && j > 0) {
+            if (dp[i][j] == dp[i-1][j]) {
+                i--;
+            } else if (dp[i][j] == dp[i][j-1]) {
+                j--;
+            } else if (dp[i][j] == dp[i-1][j-1] + 1) {
+                sb.append(s.charAt(i-1));
+                i--; j--;
+            }
         }
+
+        System.out.println(sb.reverse());
+
     }
 
 }
