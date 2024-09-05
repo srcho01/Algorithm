@@ -60,14 +60,14 @@ public class BOJ1194 {
                 } else if (maze[nx][ny] == '.') {
                     visited[keys][nx][ny] = true;
                     q.add(new int[]{nx, ny, dist + 1, keys});
-                } else if ('a' <= maze[nx][ny] && maze[nx][ny] <= 'z') {
+                } else if ('a' <= maze[nx][ny] && maze[nx][ny] <= 'f') {
                     int nextKeys = keys | (1 << (maze[nx][ny] - 'a'));
                     if (!visited[nextKeys][nx][ny]) {
                         visited[nextKeys][nx][ny] = true;
                         q.add(new int[]{nx, ny, dist + 1, nextKeys});
                     }
-                } else if ('A' <= maze[nx][ny] && maze[nx][ny] <= 'Z') {
-                    int targetKey = Character.toLowerCase(maze[nx][ny]) - 'a';
+                } else if ('A' <= maze[nx][ny] && maze[nx][ny] <= 'F') {
+                    int targetKey = maze[nx][ny] - 'A';
                     if (((keys >> targetKey) & 1) == 1){
                         visited[keys][nx][ny] = true;
                         q.add(new int[]{nx, ny, dist + 1, keys});
