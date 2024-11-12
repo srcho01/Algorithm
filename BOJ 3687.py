@@ -17,9 +17,9 @@ for i in range(8, MAX+1):
         if i-j >= 2:
             num = need_stick[j]
             if j == 6:
-                min_dp[i] = min(int(min_dp[i]), int(min_dp[i-j] + num), int('6' + min_dp[i-j]))
+                min_dp[i] = min(min_dp[i], int(min_dp[i-j] + num), int('6' + min_dp[i-j]))
             else:
-                min_dp[i] = min(int(min_dp[i]), int(min_dp[i-j] + num), int(num + min_dp[i-j]))
+                min_dp[i] = min(min_dp[i], int(min_dp[i-j] + num), int(num + min_dp[i-j]))
     
     min_dp[i] = str(min_dp[i])
     
