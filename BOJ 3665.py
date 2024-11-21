@@ -37,7 +37,7 @@ for _ in range(t):
     while queue:
         if len(queue) > 1:
             print("?")
-            break
+            exit()
             
         curr = queue.popleft()
         ans.append(curr)
