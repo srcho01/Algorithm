@@ -37,7 +37,7 @@ for _ in range(t):
     while queue:
         if len(queue) > 1:
             print("?")
-            exit()
+            break
             
         curr = queue.popleft()
         ans.append(curr)
@@ -46,8 +46,8 @@ for _ in range(t):
             indegree[nxt] -= 1
             if indegree[nxt] == 0:
                 queue.append(nxt)
-                
-    if len(ans) < n:
-        print("IMPOSSIBLE")
     else:
-        print(*ans)
+        if len(ans) < n:
+            print("IMPOSSIBLE")
+        else:
+            print(*ans)
